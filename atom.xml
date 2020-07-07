@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://hjx-zju.github.io/blog/</id>
     <title>hjx的blog</title>
-    <updated>2020-07-07T05:50:52.097Z</updated>
+    <updated>2020-07-07T06:31:57.532Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://hjx-zju.github.io/blog/"/>
     <link rel="self" href="https://hjx-zju.github.io/blog/atom.xml"/>
@@ -175,10 +175,10 @@ _  下划线
 <p><strong>例：</strong></p>
 <ul class="contains-task-list">
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-534379"><label class="task-list-item-label" for="task-item-534379"> 吃</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-8672387"><label class="task-list-item-label" for="task-item-8672387"> 吃</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5853665"><label class="task-list-item-label" for="task-item-5853665"> 喝</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5929463"><label class="task-list-item-label" for="task-item-5929463"> 喝</label></p>
 </li>
 </ul>
 <h2 id="15围栏代码块">15.围栏代码块</h2>
@@ -414,6 +414,21 @@ Mermaid 序列图/流程图/甘特图语法
 <figure data-type="image" tabindex="20"><img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00200.jpg" alt="img" loading="lazy"></figure>
 <h5 id="6图片操作">6.图片操作</h5>
 <figure data-type="image" tabindex="21"><img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00204.jpg" alt="img" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[关于]]></title>
+        <id>https://hjx-zju.github.io/blog/post/about/</id>
+        <link href="https://hjx-zju.github.io/blog/post/about/">
+        </link>
+        <updated>2019-01-25T11:09:48.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+</blockquote>
+<h2 id="关于本站">🏠 关于本站</h2>
+<h2 id="博主是谁">👨‍💻 博主是谁</h2>
+<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
+<h2 id="联系我呀">📬 联系我呀</h2>
 ]]></content>
     </entry>
     <entry>
