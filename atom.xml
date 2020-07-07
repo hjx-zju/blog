@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://hjx-zju.github.io/blog/</id>
     <title>Gridea</title>
-    <updated>2020-07-01T05:11:12.246Z</updated>
+    <updated>2020-07-07T03:24:03.045Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://hjx-zju.github.io/blog/"/>
     <link rel="self" href="https://hjx-zju.github.io/blog/atom.xml"/>
@@ -10,6 +10,411 @@
     <logo>https://hjx-zju.github.io/blog/images/avatar.png</logo>
     <icon>https://hjx-zju.github.io/blog/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[markdown笔记]]></title>
+        <id>https://hjx-zju.github.io/blog/post/markdown-bi-ji/</id>
+        <link href="https://hjx-zju.github.io/blog/post/markdown-bi-ji/">
+        </link>
+        <updated>2020-07-07T03:22:23.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1-粗体斜体">1. 粗体斜体</h2>
+<pre><code>**加粗**
+*斜体*
+</code></pre>
+<h2 id="2-段落与换行">2. 段落与换行</h2>
+<p>1）不同段落间有空行<br>
+2）段内换行：上一行结尾插入两空格后回车</p>
+<h2 id="3-列表">3. 列表</h2>
+<p>有序列表：数字符号+英文句号+空格+列表内容<br>
+无序列表：* / - / + （主要使用减号-）</p>
+<ul>
+<li>星号表示</li>
+<li>减号表示</li>
+</ul>
+<ul>
+<li>加号表示<br>
+嵌套列表表示如下（有序和无序可互相嵌套）：</li>
+<li>第一层列表<br>
+TAB + 第二层列表<br>
+TAB + TAB + 第三层列表</li>
+</ul>
+<ol>
+<li>嵌套列表
+<ul>
+<li>无序列表
+<ol>
+<li>第三层列表</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="4-分割线">4. 分割线</h2>
+<p>分割线由3个以上的 * / - / _ 来标记</p>
+<hr>
+<hr>
+<h2 id="5-图片">5. 图片</h2>
+<p>！<a href="%E5%9B%BE%E7%89%87%E5%9C%B0%E5%9D%80">图片替代文字</a><br>
+1)图片替代文字在图片无法显示时有用，正常可以为空<br>
+2)图片地址可以为网络或本地地址，本地支持相对和绝对路径。<br>
+<img src="C:%5CUsers%5Chjx%5CAppData%5CRoaming%5CUpupooResource%5C2000258699%5Coriginal.jpg" alt="无文字" loading="lazy"></p>
+<h2 id="6-链接">6. 链接</h2>
+<h3 id="61-文字链接-链接文字链接地址">6.1 文字链接： [链接文字]（链接地址）</h3>
+<p>我们日常使用的网站有<a href="https://www.google.com/">Google</a>、<a href="https://github.com/">GitHub</a></p>
+<h3 id="62-引用链接-防止链接太多和文字写在一起">6.2 引用链接 (防止链接太多和文字写在一起)</h3>
+<p>例：在文中写[链接文字][ ]，在任意位置(最好页尾)添加[链接文字]：地址<br>
+我们日常使用的网站有<a href="https://www.google.com/">Google</a>、 <a href="https://github.com/">GitHub</a></p>
+<h3 id="63网址链接">6.3网址链接</h3>
+<p>&lt;URL 或邮箱地址&gt;，可自动转换成超链接。<br>
+<a href="mailto:222233333@qq.com">222233333@qq.com</a></p>
+<h2 id="7-代码">7. 代码</h2>
+<h3 id="71-行内代码">7.1 行内代码</h3>
+<p>以**'**(数字键1旁边的字符)包裹，如<code>stdio.h</code></p>
+<h3 id="72-代码块">7.2 代码块</h3>
+<p>代码块以Tab或4个空格开头</p>
+<pre><code class="language-c">int a;
+a=1;
+return;
+</code></pre>
+<h3 id="73-使用规范">7.3 使用规范</h3>
+<p>1)**`**包裹也可用于转义或强调某些字符。<br>
+2）用````+语言类型`来显示语法高亮</p>
+<h2 id="8引用">8.引用</h2>
+<h3 id="1语法">1.语法</h3>
+<p>引用由<code>&gt;+引用内容</code>来标记</p>
+<p>1)多行引用也可以在每一行开头都插入</p>
+<p>2)引用中可以嵌套引用</p>
+<p>3)引用中可以使用其他markdown语法</p>
+<p>4)段落与换行的格式在引用中同样适用</p>
+<p><strong>单行引用</strong></p>
+<blockquote>
+<p>我是引用的句子</p>
+</blockquote>
+<p><strong>多行引用</strong></p>
+<blockquote>
+<p>第一行，最后有两个空格</p>
+<p>第二行</p>
+</blockquote>
+<p><strong>嵌套引用</strong></p>
+<blockquote>
+<p>第一层</p>
+<blockquote>
+<p>嵌套引用</p>
+</blockquote>
+</blockquote>
+<h2 id="9-转义">9. 转义</h2>
+<p>\+特殊符号</p>
+<p>可被转义的特殊符号如下</p>
+<pre><code>\  反斜线
+`  反引号
+*  星号
+_  下划线
+() 括号
+[] 方括号
+{} 花括号
+#  井字号
++  加号
+-  减号
+.  英文句号
+!  感叹号
+</code></pre>
+<p><strong>以下是扩展语法(GitHub Flavored Markdown)</strong></p>
+<h2 id="10-删除线">10. 删除线</h2>
+<p><code>~~被删除的文字~~</code></p>
+<p><s>不是</s></p>
+<h2 id="11表情符号">11.表情符号</h2>
+<p><code>:表情代码:</code></p>
+<p>😄</p>
+<p>更多表情符号可参考<a href="http://www.webpagefx.com/tools/emoji-cheat-sheet/">http://www.webpagefx.com/tools/emoji-cheat-sheet/</a></p>
+<h2 id="12-自动链接">12. 自动链接</h2>
+<p>GFM扩展语法可以不使用&lt;&gt;包裹链接</p>
+<h2 id="13表格">13.表格</h2>
+<p><strong>表格语法如下：</strong></p>
+<pre><code>|表头1|表头2|表头3|
+|---- |----|----|
+|内容1|内容2|内容3|
+|内容1|内容2|内容3|
+</code></pre>
+<p><strong>语法说明如下：</strong></p>
+<p>1)单元格间用|来分隔。</p>
+<p>2)单元格和|间的空格会被移除</p>
+<p>3)表头与其他行用-来分隔</p>
+<p>4)表格对其格式如下</p>
+<pre><code>- 左对齐（默认）:----
+- 右对齐              ----：
+- 居中对齐           :----:
+</code></pre>
+<p>5）块级元素（代码块、引用区块）无法插入表格，可插入链接等标记</p>
+<p><strong>示例</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">左对齐</th>
+<th style="text-align:center">居中对齐</th>
+<th style="text-align:right">右对齐</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:right">3</td>
+</tr>
+<tr>
+<td style="text-align:left">张三</td>
+<td style="text-align:center">李四</td>
+<td style="text-align:right">王五</td>
+</tr>
+</tbody>
+</table>
+<h2 id="14任务列表">14.任务列表</h2>
+<p>语法如下</p>
+<pre><code>- [] 未勾选
+- [x] 已勾选
+</code></pre>
+<p><strong>例：</strong></p>
+<ul class="contains-task-list">
+<li class="task-list-item">
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7252855"><label class="task-list-item-label" for="task-item-7252855"> 吃</label></p>
+</li>
+<li class="task-list-item">
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-8705559"><label class="task-list-item-label" for="task-item-8705559"> 喝</label></p>
+</li>
+</ul>
+<h2 id="15围栏代码块">15.围栏代码块</h2>
+<p>使用连续三个```或~~~包裹，可支持语法高亮 (+语言类型)</p>
+<pre><code class="language-c">#include&lt;stdio.h&gt;
+int main(){
+    printf(&quot;Hello World&quot;);
+    return 0;
+}
+</code></pre>
+<h2 id="16-锚点书签">16. 锚点\书签</h2>
+<p>锚点可用来标记文档的特定位置，使用锚点可跳转到当前文档或其他文档中的制定位置。</p>
+<p><strong>语法</strong></p>
+<p><code>[锚点描述](#锚点名)</code></p>
+<p><strong>语法说明</strong></p>
+<ol>
+<li>
+<p>锚点名建议使用字母和数字。</p>
+</li>
+<li>
+<p>锚点名区分英文大小写。</p>
+</li>
+<li>
+<p>锚点名不能含有空格及特殊字符</p>
+</li>
+</ol>
+<p>[链接](#6. 链接)</p>
+<p><strong>以下是排版相关内容</strong></p>
+<h2 id="17-排版">17. 排版</h2>
+<p><strong>对比</strong></p>
+<figure data-type="image" tabindex="1"><img src="http://reader.epubee.com/books/mobile/fd/fd2c265149367259b9f2e2054dddf75a/Image00120.jpg" alt="个人" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="http://reader.epubee.com/books/mobile/fd/fd2c265149367259b9f2e2054dddf75a/Image00121.jpg" alt="苹果官网" loading="lazy"></figure>
+<h3 id="171-空格">17.1 空格</h3>
+<p>​       <strong>需要空格的情况</strong></p>
+<ul>
+<li>
+<p>中文和英文之间加空格</p>
+</li>
+<li>
+<p>中文/英文和数字之间加空格，注意部分编辑器会自动添加。</p>
+</li>
+<li>
+<p>英文标点符号与后面字符之间需要加空格，与前面的不需要</p>
+<p><code>More ways to shop: Visit an Apple Store, call 1-800-MY-APPLE.</code></p>
+</li>
+<li>
+<p>中文、英文中使用&gt;（半角）标识路径时，两边都需要加空格</p>
+<p><code>Settings &gt; General &gt; Reset &gt; Erase all Content and Settings</code></p>
+<p><strong>不需要的情况</strong></p>
+</li>
+<li>
+<p>中文标点符号和数字/中文/英文之间不需要添加空格</p>
+</li>
+<li>
+<p>数字和百分号之不需要添加空格</p>
+</li>
+<li>
+<p>数字和单位符号之间不需要添加空格</p>
+</li>
+<li>
+<p>英文和数字组合</p>
+</li>
+<li>
+<p>当/(半角)表示“或”、“路径”时，前后均不加空格</p>
+</li>
+<li>
+<p>货币符号后不加空格</p>
+</li>
+<li>
+<p>负号后不加空格</p>
+</li>
+</ul>
+<h3 id="172全角和半角">17.2全角和半角</h3>
+<p>全角：中文标点符号，占两个字节。    （，。；：！#）</p>
+<p>半角：英文标点符号和数字，占一个字节。 （,.:;!#）</p>
+<p><strong>以下是各种应用</strong></p>
+<h2 id="18typora">18.Typora</h2>
+<h3 id="181-快捷键">18.1 快捷键</h3>
+<h4 id="1811-编辑样式">18.1.1 编辑样式</h4>
+<figure data-type="image" tabindex="3"><img src="http://reader.epubee.com/books/mobile/fd/fd2c265149367259b9f2e2054dddf75a/Image00129.jpg" alt="img" loading="lazy"></figure>
+<h4 id="1812-标题">18.1.2 标题</h4>
+<figure data-type="image" tabindex="4"><img src="http://reader.epubee.com/books/mobile/fd/fd2c265149367259b9f2e2054dddf75a/Image00131.jpg" alt="img" loading="lazy"></figure>
+<h4 id="1813-列表">18.1.3 列表</h4>
+<figure data-type="image" tabindex="5"><img src="http://reader.epubee.com/books/mobile/fd/fd2c265149367259b9f2e2054dddf75a/Image00132.jpg" alt="img" loading="lazy"></figure>
+<p><strong>注</strong>：增加缩进和减少缩进可用于列表及代码块。</p>
+<h4 id="1814-引用和分隔线">18.1.4 引用和分隔线</h4>
+<figure data-type="image" tabindex="6"><img src="http://reader.epubee.com/books/mobile/fd/fd2c265149367259b9f2e2054dddf75a/Image00134.jpg" alt="img" loading="lazy"></figure>
+<h4 id="1815-表格">18.1.5 表格</h4>
+<p>可执行：菜单栏-&gt; 【段落】-&gt; 【表格】-&gt; 输入列数和行数-&gt; 确定。快捷键如下</p>
+<figure data-type="image" tabindex="7"><img src="http://reader.epubee.com/books/mobile/fd/fd2c265149367259b9f2e2054dddf75a/Image00135.jpg" alt="img" loading="lazy"></figure>
+<h4 id="1816-代码">18.1.6 代码</h4>
+<p>执行：菜单栏-&gt; 【段落】-&gt;【代码块】。</p>
+<figure data-type="image" tabindex="8"><img src="http://reader.epubee.com/books/mobile/fd/fd2c265149367259b9f2e2054dddf75a/Image00141.jpg" alt="img" loading="lazy"></figure>
+<ul>
+<li>显示代码行数：偏好设置-&gt;勾选【显示行号】</li>
+</ul>
+<h3 id="182-扩展语法">18.2 扩展语法</h3>
+<h4 id="1821-编辑样式">18.2.1 编辑样式</h4>
+<h5 id="a下划线">a）下划线</h5>
+<p>实现：</p>
+<pre><code>&lt;u&gt;内容&lt;/u&gt;
+</code></pre>
+<figure data-type="image" tabindex="9"><img src="http://reader.epubee.com/books/mobile/fd/fd2c265149367259b9f2e2054dddf75a/Image00145.jpg" alt="img" loading="lazy"></figure>
+<h5 id="b内联数学公式">b）内联数学公式</h5>
+<p>实现：</p>
+<pre><code>$数学公式$
+</code></pre>
+<p>或执行：【格式】-&gt;【内联公式】</p>
+<h5 id="c下标和上标">c）下标和上标</h5>
+<pre><code>~下标内容~
+^上标内容^
+</code></pre>
+<p>或执行：【格式】-&gt;【上标/下标】</p>
+<h5 id="d高亮">d）高亮</h5>
+<pre><code>==高亮内容==
+</code></pre>
+<h5 id="e注释">e）注释</h5>
+<p>编辑和预览时可见，导出PDF或Word时隐藏</p>
+<p>执行：【格式】-&gt;【注释】</p>
+<pre><code>&lt;!--注释内容--&gt;
+</code></pre>
+<h5 id="f清除样式">f）清除样式</h5>
+<p>执行：【格式】-&gt;【清楚样式】</p>
+<figure data-type="image" tabindex="10"><img src="http://reader.epubee.com/books/mobile/fd/fd2c265149367259b9f2e2054dddf75a/Image00159.jpg" alt="img" loading="lazy"></figure>
+<h4 id="1822-编辑段落">18.2.2 编辑段落</h4>
+<h5 id="a数学公式块">a）数学公式块</h5>
+<p>执行：【段落】-&gt;【公式块】</p>
+<pre><code>$$
+数学公式 \\换行
+$$
+</code></pre>
+<figure data-type="image" tabindex="11"><img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00163.jpg" alt="img" loading="lazy"></figure>
+<h5 id="b目录">b）目录</h5>
+<p>执行：【段落】-&gt;【内容目录】</p>
+<pre><code>[TOC]     // Table of Contents
+</code></pre>
+<h5 id="c脚注">c）脚注</h5>
+<pre><code>引用脚注[^参考]
+[^参考]：这段文字是对脚注的描述
+</code></pre>
+<h5 id="d图表序列-流程和mermaid">d）图表（序列、流程和Mermaid）</h5>
+<ul>
+<li>
+<h6 id="序列图"><strong>序列图</strong></h6>
+<p>语法可参考<a href="https://bramp.github.io/js-sequence-diagrams/">js-sequence-diagrams</a></p>
+<pre><code>​```sequence
+js-sequence-diagrams 语法
+​```
+</code></pre>
+<p><strong>示例</strong></p>
+</li>
+</ul>
+<img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00170.jpg" alt="img" style="zoom:33%;" />
+<img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00171.jpg" alt="img" style="zoom:33%;" />
+<ul>
+<li>
+<h6 id="流程图"><strong>流程图</strong></h6>
+<p>语法可参考<a href="http://flowchart.js.org/">flowchart</a></p>
+<pre><code class="language-sequence">​```flow
+flowchart.js 语法
+​```
+```
+
+**示例**
+
+&lt;img src=&quot;C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00173.jpg&quot; alt=&quot;img&quot; style=&quot;zoom: 33%;&quot; /&gt;
+
+&lt;img src=&quot;C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00174.jpg&quot; alt=&quot;img&quot; style=&quot;zoom: 33%;&quot; /&gt;
+
+</code></pre>
+</li>
+<li>
+<h6 id="mermaid"><strong>Mermaid</strong></h6>
+<p>语法可参考<a href="https://knsv.github.io/mermaid/#loops32">Mermaid</a></p>
+</li>
+</ul>
+<pre><code>​```mermaid
+Mermaid 序列图/流程图/甘特图语法
+​```
+</code></pre>
+<p>​	<strong>示例</strong></p>
+<ol>
+<li>
+<p>序列图</p>
+<img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00176.jpg" alt="img" style="zoom:50%;" />
+</li>
+</ol>
+<img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00177.jpg" alt="img" style="zoom: 50%;" />
+<ol start="2">
+<li>
+<p>流程图</p>
+<img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00179.jpg" alt="img" style="zoom:33%;" />
+</li>
+</ol>
+<img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00180.jpg" alt="img" style="zoom:33%;" />
+<p>​</p>
+<ol start="3">
+<li>
+<p>甘特图</p>
+<img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00182.jpg" alt="img" style="zoom:50%;" />
+<img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00183.jpg" alt="img" style="zoom:50%;" />
+<figure data-type="image" tabindex="12"><img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00184.jpg" alt="img" loading="lazy"></figure>
+</li>
+</ol>
+<h4 id="1823-网页标签">18.2.3 网页标签</h4>
+<p>更多资料参考<a href="https://support.typora.io/HTML/">链接</a></p>
+<h6 id="a文字颜色和大小">a）文字颜色和大小</h6>
+<pre><code>&lt;span style=&quot;color:颜色代码; font-size:大小px&quot; &gt; 内容 &lt;/span&gt;
+
+</code></pre>
+<figure data-type="image" tabindex="13"><img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00185.jpg" alt="img" loading="lazy"></figure>
+<h6 id="b嵌入网页">b）嵌入网页</h6>
+<figure data-type="image" tabindex="14"><img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00187.jpg" alt="img" loading="lazy"></figure>
+<h6 id="c插入视频">c）插入视频</h6>
+<figure data-type="image" tabindex="15"><img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00189.jpg" alt="img" loading="lazy"></figure>
+<h3 id="183-实用功能">18.3 实用功能</h3>
+<h4 id="1831-文件操作">18.3.1 文件操作</h4>
+<figure data-type="image" tabindex="16"><img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00190.jpg" alt="img" loading="lazy"></figure>
+<h4 id="1832-编辑技巧">18.3.2 编辑技巧</h4>
+<h5 id="1-复制和粘贴">1. 复制和粘贴</h5>
+<p>复制markdown源码：执行【编辑】-&gt;【复制为markdown】</p>
+<figure data-type="image" tabindex="17"><img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00192.jpg" alt="img" loading="lazy"></figure>
+<p>复制HTML源码：执行-&gt;【复制为HTML代码】</p>
+<p>粘贴执行-&gt;【粘贴为纯文本】</p>
+<figure data-type="image" tabindex="18"><img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00193.jpg" alt="img" loading="lazy"></figure>
+<h5 id="2选择">2.选择</h5>
+<figure data-type="image" tabindex="19"><img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00195.jpg" alt="img" loading="lazy"></figure>
+<h5 id="3删除">3.删除</h5>
+<p>删除当前词快捷键：<code>Ctrl+Shift+D</code></p>
+<h5 id="4查找和替换">4.查找和替换</h5>
+<p>快捷键：<code>Ctrl+F</code></p>
+<h5 id="5跳转">5.跳转</h5>
+<figure data-type="image" tabindex="20"><img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00200.jpg" alt="img" loading="lazy"></figure>
+<h5 id="6图片操作">6.图片操作</h5>
+<figure data-type="image" tabindex="21"><img src="C:%5CUsers%5Chjx%5CDocuments%5Cmarkdown%E7%AC%94%E8%AE%B0.assets%5CImage00204.jpg" alt="img" loading="lazy"></figure>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://hjx-zju.github.io/blog/post/hello-gridea/</id>
