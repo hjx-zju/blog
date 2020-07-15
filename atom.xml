@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://hjx-zju.github.io/blog/</id>
     <title>hjx的blog</title>
-    <updated>2020-07-15T14:18:11.075Z</updated>
+    <updated>2020-07-15T14:23:01.865Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://hjx-zju.github.io/blog/"/>
     <link rel="self" href="https://hjx-zju.github.io/blog/atom.xml"/>
@@ -11,12 +11,441 @@
     <icon>https://hjx-zju.github.io/blog/favicon.ico</icon>
     <rights>All rights reserved 2020, hjx的blog</rights>
     <entry>
+        <title type="html"><![CDATA[python 基础语法]]></title>
+        <id>https://hjx-zju.github.io/blog/post/python-ji-chu-yu-fa/</id>
+        <link href="https://hjx-zju.github.io/blog/post/python-ji-chu-yu-fa/">
+        </link>
+        <updated>2020-07-15T14:21:05.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="printinput">print（）/input（）</h2>
+<p>print(&quot;  &quot;/‘  ’)</p>
+<p>换行：三引号print(‘’‘       ’‘’)</p>
+<p>不换行：<code>print('str',end='')</code></p>
+<p><code>input(&quot; &quot;)</code>：input内内容将输出，输入内容会被强制转换为字符串。</p>
+<h2 id="转义字符">转义字符</h2>
+<pre><code>\a	响铃（BEL）
+\b	退格（BS），将当前位置移到前一列
+\f	换页（FF），移到下页开头
+\n	换行（LF）
+\r	回车（CR），移到本行开头
+\t	水平制表（HT）
+\v	垂直制表（VT）
+\0	空字符（NULL）
+\ddd	1到3位八进制所代表的任意字符
+\xhh	1到2位十六进制所代表的任意字符
+\\、\'、\&quot;、\?	其他转义用
+</code></pre>
+<h2 id="数据类型">数据类型</h2>
+<h3 id="三种类型">三种类型</h3>
+<h4 id="字符串-str">字符串 str</h4>
+<p>【单/双/三引号】包裹的内容均为字符串</p>
+<h5 id="字符串连接和合并">字符串连接和合并</h5>
+<p>1）使用<code>+</code>号进行拼接</p>
+<pre><code class="language-python">str1='hello'
+str2='world'
+newstr=str1+str2
+</code></pre>
+<p>2）用join合并</p>
+<pre><code>url=['www','baidu','com']
+print('.'.join(url))
+#www.baidu.com
+</code></pre>
+<h5 id="字符串相乘和切片">字符串相乘和切片</h5>
+<p>1)形成分隔符</p>
+<pre><code class="language-python">line='-'*10
+print(line)
+#----------
+</code></pre>
+<p>2）切片</p>
+<pre><code class="language-python">str='abcdefg'
+print(str[0:5])
+#取第一个到第五个
+</code></pre>
+<h5 id="字符串分割">字符串分割</h5>
+<p>1)split简单分割</p>
+<pre><code class="language-python">phone='400-800-800-1234'
+print(phone.split('-'))
+&gt;&gt;['400', '800', '800', '1234']
+</code></pre>
+<p>2）复杂分割</p>
+<pre><code class="language-python">#r表示不转义,分隔符可以是;或者,
+#空格后面跟0个多个额外的空格，然后按照这个模式去分割
+line = 'learn programme; I ,like, fengbian'
+import re
+print(re.split(r'[;,s]\s*',line))
+&gt;&gt;&gt;['learn programme', 'I ', 'like', 'fengbian']
+</code></pre>
+<p>数据清洗的时候可能会用到</p>
+<h5 id="字符串开头和结尾的处理">字符串开头和结尾的处理</h5>
+<pre><code class="language-python">#可用于查找一个文件名的开头或结尾
+filename='trace.h'
+print(filename.endswith('h'))
+&gt;&gt;True
+print(filename.startswith('trace'))
+&gt;&gt;True
+</code></pre>
+<h5 id="字符串的查找和匹配">字符串的查找和匹配</h5>
+<p>1）一般查找</p>
+<pre><code class="language-python">#可用于长字符串里查找子字符串
+title = 'I like you'
+print(title.find('you'))
+#7
+</code></pre>
+<h4 id="整数-int">整数 int</h4>
+<p>特殊运算符</p>
+<pre><code>//	取整除返回的整数部分
+**	幂运算
+</code></pre>
+<h4 id="浮点数-float">浮点数 float</h4>
+<h3 id="type函数">type()函数</h3>
+<p>查询数据类型</p>
+<pre><code class="language-python">a='123'
+print(type(a))
+
+#&lt;class 'str'&gt;
+</code></pre>
+<h3 id="数据类型转换">数据类型转换</h3>
+<pre><code class="language-python">str()	转换成字符串
+int()	转换成整数（只能符合整数规范字符串、浮点数）
+float()	转换成浮点数
+</code></pre>
+<h2 id="条件判断">条件判断</h2>
+<p>注意缩进及冒号。</p>
+<pre><code class="language-python">if ...:
+    ...
+elif:
+    ....
+else:
+    ...
+</code></pre>
+<h2 id="列表">列表</h2>
+<p>类似数组，但可以同时储存多种数据类型，</p>
+<p>列表的格式：a=['1',2,3.0]</p>
+<h3 id="切片">切片</h3>
+<ul>
+<li>[:n]：表示从头取n个元素</li>
+<li>[n:]：表示n个元素以后剩下的元素</li>
+<li>[n:m]：表示第n到第m中间的元素</li>
+<li>左取右不取</li>
+</ul>
+<p>切片下输出的仍是列表</p>
+<h3 id="赋值">赋值</h3>
+<p>可以用逗号隔开分别赋值</p>
+<pre><code class="language-python">a,b,c= [1,2,3]
+</code></pre>
+<h3 id="增删元素">增/删元素</h3>
+<p><strong>增加元素</strong></p>
+<pre><code class="language-python">listname.append(element)
+</code></pre>
+<p>注：可以添加列表元素，且添加至列表末尾。</p>
+<p><strong>删除</strong></p>
+<pre><code class="language-python">del listname[position]
+</code></pre>
+<p>注：列表也可以通过索引位置直接修改值。</p>
+<h2 id="字典">字典</h2>
+<h3 id="代码格式">代码格式</h3>
+<pre><code class="language-python">dictionary={key:value,key:value,...}
+</code></pre>
+<ul>
+<li>key是唯一的</li>
+<li>字典无序，通过唯一的key取值。</li>
+</ul>
+<h3 id="提取元素">提取元素</h3>
+<pre><code>dictionary name[key]
+scores = {'小明': 95, '小红': 90, '小刚': 90}
+print(scores['小明'])
+</code></pre>
+<h3 id="增加删除元素">增加/删除元素</h3>
+<p>增加元素：直接新增一个dictionary name[key]即可。</p>
+<p>删除：<code>del dictionary name[key]</code></p>
+<p>修改： <code>dictionary name[key]=new value</code></p>
+<h2 id="元组tuple">元组（tuple）</h2>
+<pre><code>tuple=('A','B',C)
+</code></pre>
+<h2 id="列表和字典的嵌套">列表和字典的嵌套</h2>
+<h3 id="列表嵌套">列表嵌套</h3>
+<pre><code>a=[[1,2,3],[4,5,6]]
+print(a[1][2])
+#6
+</code></pre>
+<h3 id="字典嵌套">字典嵌套</h3>
+<pre><code>scr={1:{a:1,b:2},2:{c:3,d:4}}
+print(scr[2][c])
+#3
+</code></pre>
+<h3 id="字典与列表嵌套">字典与列表嵌套</h3>
+<h2 id="扩展函数">扩展函数</h2>
+<h3 id="sort函数永久性改变列表顺序">sort()函数：永久性改变列表顺序</h3>
+<p>用法：<code>列表名.sort()</code></p>
+<pre><code class="language-python">a=[2,3,1,4]
+a.sort()
+print(a)
+#a=[1,2,3,4]
+</code></pre>
+<h3 id="sorted函数短暂的对列表排序">sorted()函数：短暂的对列表排序</h3>
+<p>用法：<code>sorted(列表名)</code></p>
+<pre><code class="language-python">a=[2,3,1,4]
+print(sorted(a))
+print(a)
+#a=[1,2,3,4]
+#a=[2,3,1,4]
+</code></pre>
+<h3 id="reverse函数使列表逆序">reverse()函数：使列表逆序</h3>
+<p>用法：<code>列表名.reverse()</code></p>
+<pre><code class="language-python">a=[2,3,1,4,3]
+a.reverse()
+print(a)
+#a=[3,4,1,3,2]
+</code></pre>
+<h3 id="len函数得到列表或字典长度">len()函数：得到列表或字典长度</h3>
+<p>用法：<code>len(列表名)</code></p>
+<pre><code class="language-python">a=[1,2,3]
+print(len(a))
+#3
+</code></pre>
+<h3 id="insert函数在指定位置插入元素">insert()函数：在指定位置插入元素</h3>
+<p><code>列表名.insert(索引，值)</code></p>
+<pre><code class="language-python">a=[1,2,4]
+a.insert(2,3)
+#a=[1,2,3,4]
+</code></pre>
+<h3 id="pop函数删除元素并返回删除值">pop()函数：删除元素并返回删除值</h3>
+<p>用法：<code>列表名.pop(索引)</code></p>
+<pre><code class="language-python">a=[1,2,3,4]
+b=a.pop(1)
+#b=2
+</code></pre>
+<h3 id="remove函数用元素进行检索删除返回none值">remove()函数：用元素进行检索删除，返回None值</h3>
+<p>用法：<code>列表名.remove(元素值)</code></p>
+<h3 id="统计相关函数min-max-sum">统计相关函数：min()、max()、sum()</h3>
+<p>用法：<code>函数名(列表名)</code></p>
+<h3 id="listrange创建数字列表">list()&amp;range()：创建数字列表</h3>
+<p>用法：<code>list(range())</code></p>
+<pre><code class="language-python">a=list(range(1,6))#大于等于左端，小于右端
+#a=[1,2,3,4,5]
+
+#list()还可将数据转换为列表
+a=list('abc')
+#a=['a','b','c']
+</code></pre>
+<h3 id="extend">extend()</h3>
+<pre><code class="language-python">#用于在列表末尾一次性追加另一序列的多个值
+a=[1,2]
+b=[3,4]
+a.extend(b)
+print(a)
+#1 2 3 4
+</code></pre>
+<h3 id="reversed函数">reversed()函数</h3>
+<p>待补充</p>
+<h2 id="循环结构">循环结构</h2>
+<h3 id="forin">for...in..</h3>
+<p>in 后可接列表、字典、字符串。</p>
+<h4 id="遍历字符串">遍历字符串</h4>
+<pre><code class="language-python">for i in 'abc':
+    print(i)
+# a b c
+</code></pre>
+<h4 id="遍历列表">遍历列表</h4>
+<pre><code class="language-python">for i in [1,2,3,4]:
+    print(i)
+</code></pre>
+<h4 id="遍历字典">遍历字典</h4>
+<h5 id="1-遍历字典键和值">1. 遍历字典键和值</h5>
+<pre><code class="language-python">d={1:'a',2:'b',3:'c'}
+for a,b in d.items():
+    print('key:'+str(a)+'\value:'+str(b))
+# items()返回字典的(键，值)元组分别赋给a,b
+</code></pre>
+<h5 id="2-遍历字典的键">2. 遍历字典的键</h5>
+<pre><code class="language-python">d={1:'a',2:'b',3:'c'}
+#method 1
+for i in d:
+#method 2
+for i in d.keys():
+    print(i)
+</code></pre>
+<h5 id="3-遍历字典的值">3. 遍历字典的值</h5>
+<pre><code class="language-python">d={1:'a',2:'b',3:'c'}
+for i in d.values():
+    print(i)
+</code></pre>
+<h4 id="range函数">range()函数</h4>
+<pre><code class="language-python">range(a,b,c)
+#a:计数从a开始，不填默认为0；
+#b:计数到b结束，但不包括b；
+#c：计数间隔，不填时默认为1；
+</code></pre>
+<h5 id="1-整数序列取头不取尾">1. 整数序列：取头不取尾</h5>
+<pre><code class="language-python">for i in range(1,3):
+    print(i)
+#1、2
+</code></pre>
+<h5 id="2-带间隔数">2. 带间隔数</h5>
+<pre><code class="language-python">for i in range(1,10,3):
+	print(i)
+# 1、4、7
+</code></pre>
+<h5 id="3-次数">3. 次数</h5>
+<pre><code class="language-python">for i in range(x):
+	print i  #从0到x-1,执行x次
+</code></pre>
+<h3 id="while循环">while循环</h3>
+<pre><code class="language-python">while condition:
+	...
+</code></pre>
+<h4 id="避免死循环">避免死循环</h4>
+<ul>
+<li>代码区使用exit()</li>
+<li>终端区按ctrl+c，强制结束</li>
+<li>代码区使用break</li>
+</ul>
+<h2 id="布尔值">布尔值</h2>
+<p>布尔值：<code>True</code> 、<code>False</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">False</th>
+<th style="text-align:center">True</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">int/float</td>
+</tr>
+<tr>
+<td style="text-align:center">' '</td>
+<td style="text-align:center">'123'</td>
+</tr>
+<tr>
+<td style="text-align:center">[]</td>
+<td style="text-align:center">[1,2,3]</td>
+</tr>
+<tr>
+<td style="text-align:center">{}</td>
+<td style="text-align:center">{1:'A',2:'B'}</td>
+</tr>
+</tbody>
+</table>
+<h3 id="布尔运算">布尔运算</h3>
+<pre><code>and
+or
+in #判断某元素是否在一堆数据中
+not in
+not
+</code></pre>
+<h3 id="bool函数">bool()函数</h3>
+<p>用于判断数据布尔值，与type()用法类似</p>
+<pre><code class="language-python">list=[1,2,3,4]
+print(bool(1 in list))
+#True
+</code></pre>
+<h2 id="四种语句">四种语句</h2>
+<h3 id="breakcontinue">break/continue</h3>
+<p>用法与c差不多</p>
+<h3 id="pass">pass</h3>
+<p>不做任何操作，保证程序正常运行</p>
+<h3 id="else">else</h3>
+<p>可与for、while配合使用，跳出循环时执行else部分内容。</p>
+<pre><code class="language-python">for i in range(3):
+    print(i)
+else:
+    ...    
+
+</code></pre>
+<h2 id="格式符">格式符%</h2>
+<p>用法和c类似</p>
+<pre><code class="language-python">#使用示例
+print('%s %d %f'%(1,2,3))
+</code></pre>
+<h2 id="fomat函数">fomat()函数</h2>
+<p><code>'str'.format()</code>:格式化函数，用{}来占位。</p>
+<pre><code class="language-python">print('{}+{}=3'.format(1,2))
+#也可以指定顺序
+print('{1}+{0}=3'.format(1,2))
+#也可多次调用
+print('{1}+{0}+{1}=5'.format(1,2))
+#1+2=3
+#2+1=3
+#2+1+2=5
+</code></pre>
+<p>还有一些数字格式化的支持，待后续补充</p>
+<h2 id="random-模块">random 模块</h2>
+<pre><code class="language-python">import random
+
+random.randint(x,y)
+#随机产生[x,y]的整数
+
+random.uniform(x,y)
+#随机产生[x,y]浮点数
+
+random.choice(x)
+#从x序列中随机选取一个元素，如random.choice('Python')
+
+random.randrange(x,y,z)
+#生成[x,y]的间隔为z的随机整数
+
+random.shuffle(x)
+#打乱序列x中的元素顺序，如random.shuffle([1,2,3,4,5])
+
+random.sample(x,y)
+#从x字符串中随机选取y个字符
+</code></pre>
+<h2 id="函数">函数</h2>
+<h3 id="定义函数">定义函数</h3>
+<pre><code class="language-python">def 函数名(argu1,argu2....):
+	函数体
+	return语句
+</code></pre>
+<h3 id="默认参数">默认参数</h3>
+<pre><code class="language-python">#默认参数必须放在位置参数之后，调用时若没有传递参数则为默认值
+def func(a,b,c=0):
+    print(a+b+c)
+func(1,2)
+func(1,2,3)
+#3
+#6
+</code></pre>
+<h3 id="不定长参数">不定长参数</h3>
+<pre><code class="language-python">#当传入参数数量不确定时，可以在参数名前加*，此时数据类型为元组（tuple）。
+def func(*argu):
+	return argu
+print(func(1,2,3))
+#1 2 3
+
+#若不定长参数后又默认参数，要修改默认参数，需注明默认参数
+def func(*argu,a='0'):
+    ...
+func(1,2,3,a='3')
+</code></pre>
+<p>以print()为例</p>
+<pre><code class="language-python">print(*objects,sep=' ',end='\n',file=sys.stdout,flush=False)
+#*object说明函数可以传递任意数量参数
+#sep控制多个值之间的分隔符，默认空格，如sep='+'则会加上+号
+#end控制打印结果的结尾，默认是换行
+</code></pre>
+<h3 id="return">return</h3>
+<pre><code class="language-python">#可以以元组形式返回多个值,如
+return 1,2,3
+</code></pre>
+<h3 id="作用域">作用域</h3>
+<p>变量分为全局变量、局部变量</p>
+<pre><code class="language-python">#调用global可以将局部变量转换为全局变量
+global argu
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[gcc-makefile-cmd]]></title>
         <id>https://hjx-zju.github.io/blog/post/gcc-makefile-cmd/</id>
         <link href="https://hjx-zju.github.io/blog/post/gcc-makefile-cmd/">
         </link>
         <updated>2020-07-15T14:17:14.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="gcc">gcc</h2>
+        <summary type="html"><![CDATA[<p>简要介绍gcc、makefile及命令行操作</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>简要介绍gcc、makefile及命令行操作</p>
+<!-- more -->
+<h2 id="gcc">gcc</h2>
 <p>编译.c 文件生成.exe 文件的过程</p>
 <figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20181223165813673.png" alt="在这里插入图片描述" loading="lazy"></figure>
 <h3 id="gcc指令">gcc指令</h3>
@@ -155,7 +584,10 @@ alt+F4   #关闭当前程序
         <link href="https://hjx-zju.github.io/blog/post/markdown-bi-ji/">
         </link>
         <updated>2020-07-07T03:22:23.000Z</updated>
+        <summary type="html"><![CDATA[<p>简单的markdown入门</p>
+]]></summary>
         <content type="html"><![CDATA[<p>简单的markdown入门</p>
+<!-- more -->
 <h2 id="1-粗体斜体">1. 粗体斜体</h2>
 <pre><code>**加粗**
 *斜体*
@@ -314,10 +746,10 @@ _  下划线
 <p><strong>例：</strong></p>
 <ul class="contains-task-list">
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3858669"><label class="task-list-item-label" for="task-item-3858669"> 吃</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-7521507"><label class="task-list-item-label" for="task-item-7521507"> 吃</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-368599"><label class="task-list-item-label" for="task-item-368599"> 喝</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-7009054"><label class="task-list-item-label" for="task-item-7009054"> 喝</label></p>
 </li>
 </ul>
 <h2 id="15围栏代码块">15.围栏代码块</h2>
