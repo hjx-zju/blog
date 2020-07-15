@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>gcc-makefile-cmd | hjx的blog</title>
+<meta name="description" content="个人小站">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://hjx-zju.github.io/blog//favicon.ico?v=1594822683110">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://hjx-zju.github.io/blog//styles/main.css">
+
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://hjx-zju.github.io/blog/">hjx的blog</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="https://hjx-zju.github.io/blog/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="https://hjx-zju.github.io/blog/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="https://hjx-zju.github.io/blog/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>gcc-makefile-cmd</h1>
+            <p class="article-meta">
+              2020-07-15
+              
+            </p>
+            
+            <div class="post-content">
+              <h2 id="gcc">gcc</h2>
+<p>编译.c 文件生成.exe 文件的过程</p>
+<figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20181223165813673.png" alt="在这里插入图片描述" loading="lazy"></figure>
+<h3 id="gcc指令">gcc指令</h3>
+<pre><code class="language-makefile">gcc filename.c    #默认生成filename.exe
+
+[指令] -o newname #用来指定生成的文件名
+
+[指令] -E demo.c #执行预处理操作，对#类指令进行处理（头文件、替换宏常量、宏代码段等操作）,后面再加上-o demo.i可生成.i文件
+
+[指令] -S demo.i (-o demo.s)  #将.i文件中源码编译为汇编源码.s文件。此时检查语法错误
+
+[指令] -c demo.s (-o demo.o)  #将.s文件转换成.o文件
+
+[指令] demo.o -o demo.exe #链接操作
+</code></pre>
+<p>实际上可直接执行指令<code>gcc -c Test.c -o Test.o</code>，前面操作编译器会自动进行。</p>
+<h2 id="makefile">makefile</h2>
+<p>makefile文件描述了整个工程的编译、链接等规则，包括哪些源文件需要编译及如何编译、需要创建哪些库文件及如何创建这些库文件、如何产生最终的可执行文件等。</p>
+<h3 id="简单的makefile">简单的makefile</h3>
+<pre><code class="language-makefile">sum: main.o sum.o   #表示依赖关系
+	gcc main.o sum.o -o sum
+	
+main.o: main.c sum.h  #显示链接关系
+	gcc -c main.c	#只编译不链接
+
+sum.o: sum.c sum.h
+	gcc -c sum.c	#只编译不链接
+</code></pre>
+<h3 id="定义变量进行改进">定义变量进行改进</h3>
+<pre><code class="language-makefile">OBJS := main.o sum.o    #可将之后的s部分替换成$(OBJS)
+CC := gcc       #可以$(CC)表示编译方式
+CFLAGS := -O -Wall #显示所有错误
+
+sum: $(OBJS)   #表示依赖关系
+	@echo $^  # @+echo会显示命令的结果，不显示echo本身; 只有echo的话，会输出命令再执行
+	
+	$(CC) $(OBJS)/$^  -o sum/$@	# $^表示冒号后的所有被依赖文件; $@表示目标文件（sum）
+	
+main.o:  sum.h  #.c文件可省略
+
+sum.o:  sum.h #.c文件可省略
+
+#由于链接.h相同，也可以合并写成
+$(OBJS): sum.h
+
+
+
+%.o: %.c
+	gcc -c $&lt;     #在这种情况下自动执行.c-&gt;.o的编译，且必须删去.o下一行，$表示之后为变量，&lt;表示依赖文件中的第一个（.c）。
+
+\    #反斜杠表示换行
+</code></pre>
+<h3 id="makefile的多目标">makefile的多目标</h3>
+<pre><code class="language-makefile">clean:
+	rm $(OBJS)
+	rm sum
+# make claen 命令可以删除所有中间文件
+</code></pre>
+<ul>
+<li>makefile第一个目标为主目标，执行make时执行主目标。</li>
+<li>执行make&lt;target&gt;  会执行&lt;target&gt;目标的动作，因此一个Makefile可以以多目标的方式编译出多种可执行文件。</li>
+</ul>
+<h3 id="makefile的参数">makefile的参数</h3>
+<pre><code class="language-makefile">&lt;target&gt;:
+	...
+	./target  #可执行.exe文件
+</code></pre>
+<pre><code class="language-makefile">#添加命令行参数
+#方法1：源代码添加
+int main(int argc,char*argv[])
+
+#方法2：makefile添加参数
+&lt;target&gt;:
+	...
+	./target $(ARGS)   
+#执行时在命令行输入 make ARGS=... &lt;target&gt; 
+
+#方法3：使用宏定义代替源码中的ARGS
+gcc -D ARGS=&quot;...&quot; -c target.c
+#若宏定义为字符串则需要在&quot; &quot;外加''或\
+</code></pre>
+<h3 id="makefile的自动依赖">makefile的自动依赖</h3>
+<p>.o与对应的 .h、.c 均有对应关系，上文中的模板若改变头文件就要重新编译。而makefile自动分析依赖关系可以解决这个问题.</p>
+<pre><code class="language-makefile">gcc -MMD -c main.c 
+#编译main.c的同时分析其中引用的头文件，产生main.d文件形成依赖关系说明
+
+#makefilez中引用.d文件
+DEPS :=$(OBJS:.o=.d)
+-include $(DEPS)
+</code></pre>
+<h2 id="命令行">命令行</h2>
+<h3 id="基础操作">基础操作</h3>
+<h4 id="目录">目录</h4>
+<pre><code class="language-makefile">cd  #打开
+cd..  #回到上一层目录
+cd\	  #回到根目录
+rm  #删除
+
+dir #列出目录
+./  #表示当前目录
+mkdir/md name #新建目录
+rmdir name #删除目录
+rd&lt;folderName&gt;  #删除文件夹
+del *.*  删除文件
+
+copy name.txt newname.txt #复制文件
+xcopy D:\test\test1 d:\test\test3 /s 
+#复制文件夹，/s表示子文件一起复制
+
+rm -rf file/  #删除目录里所有东西
+</code></pre>
+<h4 id="文件">文件</h4>
+<pre><code class="language-makefile">ren test.txt  test2.txt  #重命名文件/文件夹
+type test.txt #显示文本内容
+</code></pre>
+<h4 id="其他">其他</h4>
+<pre><code class="language-makefile">cls   #清屏
+calc  #启动计算器
+ipconfig #查询本机IP地址
+color #改变颜色
+helo #查询帮助
+systeminfo #查看系统信息（带图像界面输入msinfo32
+contro  #打开控制面板
+</code></pre>
+<h4 id="windows-快捷键">windows 快捷键</h4>
+<pre><code class="language-makefile">win+E	 #打开文件管理器
+win+D	 #显示桌面
+win+L	 #锁计算机
+alt+F4   #关闭当前程序
+</code></pre>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://hjx-zju.github.io/blog/post/markdown-bi-ji/">
+                <h3 class="post-title">
+                  markdown笔记
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://hjx-zju.github.io/blog//images/avatar.png?v=1594822683110" class="no-responsive avatar">
+    <div class="text-muted">个人小站</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://hjx-zju.github.io/blog/post/gcc-makefile-cmd/">gcc-makefile-cmd</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://hjx-zju.github.io/blog/post/markdown-bi-ji/">markdown笔记</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://hjx-zju.github.io/blog/post/about/">关于</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://hjx-zju.github.io/blog/post/hello-gridea/">Hello Gridea</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://hjx-zju.github.io/blog/tag/wqQbpa5St/" class="badge success">
+          markdown
+        </a>
+      
+        <a href="https://hjx-zju.github.io/blog/tag/3SaMGQiV4/" class="badge ">
+          Gridea
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+     | <a class="rss" href="https://hjx-zju.github.io/blog//atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
+  </body>
+</html>

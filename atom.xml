@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://hjx-zju.github.io/blog/</id>
     <title>hjx的blog</title>
-    <updated>2020-07-07T06:44:44.461Z</updated>
+    <updated>2020-07-15T14:18:11.075Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://hjx-zju.github.io/blog/"/>
     <link rel="self" href="https://hjx-zju.github.io/blog/atom.xml"/>
@@ -10,6 +10,145 @@
     <logo>https://hjx-zju.github.io/blog/images/avatar.png</logo>
     <icon>https://hjx-zju.github.io/blog/favicon.ico</icon>
     <rights>All rights reserved 2020, hjx的blog</rights>
+    <entry>
+        <title type="html"><![CDATA[gcc-makefile-cmd]]></title>
+        <id>https://hjx-zju.github.io/blog/post/gcc-makefile-cmd/</id>
+        <link href="https://hjx-zju.github.io/blog/post/gcc-makefile-cmd/">
+        </link>
+        <updated>2020-07-15T14:17:14.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="gcc">gcc</h2>
+<p>编译.c 文件生成.exe 文件的过程</p>
+<figure data-type="image" tabindex="1"><img src="https://img-blog.csdnimg.cn/20181223165813673.png" alt="在这里插入图片描述" loading="lazy"></figure>
+<h3 id="gcc指令">gcc指令</h3>
+<pre><code class="language-makefile">gcc filename.c    #默认生成filename.exe
+
+[指令] -o newname #用来指定生成的文件名
+
+[指令] -E demo.c #执行预处理操作，对#类指令进行处理（头文件、替换宏常量、宏代码段等操作）,后面再加上-o demo.i可生成.i文件
+
+[指令] -S demo.i (-o demo.s)  #将.i文件中源码编译为汇编源码.s文件。此时检查语法错误
+
+[指令] -c demo.s (-o demo.o)  #将.s文件转换成.o文件
+
+[指令] demo.o -o demo.exe #链接操作
+</code></pre>
+<p>实际上可直接执行指令<code>gcc -c Test.c -o Test.o</code>，前面操作编译器会自动进行。</p>
+<h2 id="makefile">makefile</h2>
+<p>makefile文件描述了整个工程的编译、链接等规则，包括哪些源文件需要编译及如何编译、需要创建哪些库文件及如何创建这些库文件、如何产生最终的可执行文件等。</p>
+<h3 id="简单的makefile">简单的makefile</h3>
+<pre><code class="language-makefile">sum: main.o sum.o   #表示依赖关系
+	gcc main.o sum.o -o sum
+	
+main.o: main.c sum.h  #显示链接关系
+	gcc -c main.c	#只编译不链接
+
+sum.o: sum.c sum.h
+	gcc -c sum.c	#只编译不链接
+</code></pre>
+<h3 id="定义变量进行改进">定义变量进行改进</h3>
+<pre><code class="language-makefile">OBJS := main.o sum.o    #可将之后的s部分替换成$(OBJS)
+CC := gcc       #可以$(CC)表示编译方式
+CFLAGS := -O -Wall #显示所有错误
+
+sum: $(OBJS)   #表示依赖关系
+	@echo $^  # @+echo会显示命令的结果，不显示echo本身; 只有echo的话，会输出命令再执行
+	
+	$(CC) $(OBJS)/$^  -o sum/$@	# $^表示冒号后的所有被依赖文件; $@表示目标文件（sum）
+	
+main.o:  sum.h  #.c文件可省略
+
+sum.o:  sum.h #.c文件可省略
+
+#由于链接.h相同，也可以合并写成
+$(OBJS): sum.h
+
+
+
+%.o: %.c
+	gcc -c $&lt;     #在这种情况下自动执行.c-&gt;.o的编译，且必须删去.o下一行，$表示之后为变量，&lt;表示依赖文件中的第一个（.c）。
+
+\    #反斜杠表示换行
+</code></pre>
+<h3 id="makefile的多目标">makefile的多目标</h3>
+<pre><code class="language-makefile">clean:
+	rm $(OBJS)
+	rm sum
+# make claen 命令可以删除所有中间文件
+</code></pre>
+<ul>
+<li>makefile第一个目标为主目标，执行make时执行主目标。</li>
+<li>执行make&lt;target&gt;  会执行&lt;target&gt;目标的动作，因此一个Makefile可以以多目标的方式编译出多种可执行文件。</li>
+</ul>
+<h3 id="makefile的参数">makefile的参数</h3>
+<pre><code class="language-makefile">&lt;target&gt;:
+	...
+	./target  #可执行.exe文件
+</code></pre>
+<pre><code class="language-makefile">#添加命令行参数
+#方法1：源代码添加
+int main(int argc,char*argv[])
+
+#方法2：makefile添加参数
+&lt;target&gt;:
+	...
+	./target $(ARGS)   
+#执行时在命令行输入 make ARGS=... &lt;target&gt; 
+
+#方法3：使用宏定义代替源码中的ARGS
+gcc -D ARGS=&quot;...&quot; -c target.c
+#若宏定义为字符串则需要在&quot; &quot;外加''或\
+</code></pre>
+<h3 id="makefile的自动依赖">makefile的自动依赖</h3>
+<p>.o与对应的 .h、.c 均有对应关系，上文中的模板若改变头文件就要重新编译。而makefile自动分析依赖关系可以解决这个问题.</p>
+<pre><code class="language-makefile">gcc -MMD -c main.c 
+#编译main.c的同时分析其中引用的头文件，产生main.d文件形成依赖关系说明
+
+#makefilez中引用.d文件
+DEPS :=$(OBJS:.o=.d)
+-include $(DEPS)
+</code></pre>
+<h2 id="命令行">命令行</h2>
+<h3 id="基础操作">基础操作</h3>
+<h4 id="目录">目录</h4>
+<pre><code class="language-makefile">cd  #打开
+cd..  #回到上一层目录
+cd\	  #回到根目录
+rm  #删除
+
+dir #列出目录
+./  #表示当前目录
+mkdir/md name #新建目录
+rmdir name #删除目录
+rd&lt;folderName&gt;  #删除文件夹
+del *.*  删除文件
+
+copy name.txt newname.txt #复制文件
+xcopy D:\test\test1 d:\test\test3 /s 
+#复制文件夹，/s表示子文件一起复制
+
+rm -rf file/  #删除目录里所有东西
+</code></pre>
+<h4 id="文件">文件</h4>
+<pre><code class="language-makefile">ren test.txt  test2.txt  #重命名文件/文件夹
+type test.txt #显示文本内容
+</code></pre>
+<h4 id="其他">其他</h4>
+<pre><code class="language-makefile">cls   #清屏
+calc  #启动计算器
+ipconfig #查询本机IP地址
+color #改变颜色
+helo #查询帮助
+systeminfo #查看系统信息（带图像界面输入msinfo32
+contro  #打开控制面板
+</code></pre>
+<h4 id="windows-快捷键">windows 快捷键</h4>
+<pre><code class="language-makefile">win+E	 #打开文件管理器
+win+D	 #显示桌面
+win+L	 #锁计算机
+alt+F4   #关闭当前程序
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[markdown笔记]]></title>
         <id>https://hjx-zju.github.io/blog/post/markdown-bi-ji/</id>
@@ -175,10 +314,10 @@ _  下划线
 <p><strong>例：</strong></p>
 <ul class="contains-task-list">
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-1978711"><label class="task-list-item-label" for="task-item-1978711"> 吃</label></p>
+<p><input class="task-list-item-checkbox" disabled="" type="checkbox" id="task-item-3858669"><label class="task-list-item-label" for="task-item-3858669"> 吃</label></p>
 </li>
 <li class="task-list-item">
-<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-5538739"><label class="task-list-item-label" for="task-item-5538739"> 喝</label></p>
+<p><input class="task-list-item-checkbox" checked="" disabled="" type="checkbox" id="task-item-368599"><label class="task-list-item-label" for="task-item-368599"> 喝</label></p>
 </li>
 </ul>
 <h2 id="15围栏代码块">15.围栏代码块</h2>
